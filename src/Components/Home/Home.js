@@ -8,6 +8,8 @@ import "./Home.css";
 function Home() {
   const [todaysImage, setTodaysImage] = useState({});
   const [imageDate, setImageDate] = useState();
+  
+  console.log(process.env)
 
   useEffect(() => {
     const config = {
