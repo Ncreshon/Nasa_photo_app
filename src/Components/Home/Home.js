@@ -10,19 +10,26 @@ function Home() {
   const [imageDate, setImageDate] = useState();
 
   useEffect(() => {
+    const config = {
+      method: "get",
+      url: `https://api.nasa.gov/planetary/apod?api_key=${process.env.NASA_KEY}`,
+      headers: {},
+    };
     setImageDate(moment("2022-04-04").format("dddd, MMMM Do YYYY"));
-    axios.get('/nasa/home')
-    .then((res)=> {
-      setTodaysImage(res.data);
-      setImageDate(moment(res.data.date).format("dddd, MMMM Do YYYY"))
-    }).catch(err=>console.log(err))
+
+    axios(config)
+      .then(function (res) {
+        setTodaysImage(res.data);
+        setImageDate(moment(res.data.date).format("dddd, MMMM Do YYYY"));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }, []);
-
-
 
   return (
     <div className="pod">
-  <main>
+      <main>
         <h1>{imageDate}</h1>
         <h2>{todaysImage.title}</h2>
         <Image fluid src={todaysImage.url} alt={todaysImage.title} />
