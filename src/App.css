@@ -1,10 +1,39 @@
+body {
+  background: rgb(0,0,0);
+  background: -moz-linear-gradient(163deg, rgba(0,0,0,1) 23%, rgba(26,23,65,1) 44%, rgba(56,40,92,1) 95%);
+  background: -webkit-linear-gradient(163deg, rgba(0,0,0,1) 23%, rgba(26,23,65,1) 44%, rgba(56,40,92,1) 95%);
+  background: linear-gradient(163deg, rgba(0,0,0,1) 23%, rgba(26,23,65,1) 44%, rgba(56,40,92,1) 95%);
+  color: whitesmoke;
+  width: 100%;
+  
+}
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+@keyframes moonFlash {
+  0%   {box-shadow: 15px 15px 0 0 gold;}
+  25%  {box-shadow: 15px 15px 0 0 silver;}
+  50%  {box-shadow: 15px 15px 0 0 gold;}
+  100% {box-shadow: 15px 15px 0 0 silver;}
+}
+
+@keyframes move-twink-back {
+  from {background-position:0 0;}
+  to {background-position:-10000px 5000px;}
+}
+@-webkit-keyframes move-twink-back {
+  from {background-position:0 0;}
+  to {background-position:-10000px 5000px;}
+}
+@-moz-keyframes move-twink-back {
+  from {background-position:0 0;}
+  to {background-position:-10000px 5000px;}
+}
+@-ms-keyframes move-twink-back {
+  from {background-position:0 0;}
+  to {background-position:-10000px 5000px;}
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -13,26 +42,29 @@
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+
+.nav-link {
+  color: #9B6FB4;
+  font-size: 20px;
+  font-weight: bold;
+  margin: auto;
 }
 
-.App-link {
-  color: #61dafb;
+.nav {
+  background:#000 url(https://i.ibb.co/khygjvw/stars2.png) repeat top center;
+
+  z-index:1;
+  -moz-animation:move-twink-back 200s linear infinite;
+  -ms-animation:move-twink-back 200s linear infinite;
+  -o-animation:move-twink-back 200s linear infinite;
+  -webkit-animation:move-twink-back 200s linear infinite;
+  animation:move-twink-back 200s linear infinite;
+  min-height: 100px;
+  min-width: 100%;
+  margin-bottom: 70px;
+ justify-content: center;
+
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+
+
