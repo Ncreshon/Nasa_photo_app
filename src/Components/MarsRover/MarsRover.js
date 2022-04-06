@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Carousel, Image } from "react-bootstrap";
 import axios from "axios";
+import moment from 'moment';
 
 import './MarsRover.css'
 
@@ -8,11 +9,18 @@ function MarsRover() {
   const [marsImages, setMarsImages] = useState([]);
 
   useEffect(() => {
-    axios.get('/nasa/marsrover')
-    .then((res)=> {
-      console.log(res)
-      setMarsImages(res.data)
-    }).catch(err=>console.log(err))
+    const config = {
+      method: "get",
+      url: 'https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key=6RGd8QNuiA9pfsN786Q6uzjj6aTHdGsrFiKrl41g',
+      headers: {},
+    };
+    axios(config)
+    .then(function (response) {
+      setMarsImages(response.data.photos);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   }, []);
 
   return (
@@ -23,7 +31,7 @@ function MarsRover() {
             return (
               <Carousel.Item key={key}>
                 <Carousel.Caption>
-                  <h3>{img.earth_date}</h3>
+                  <h3>{moment(img.earth_date).format("dddd, MMMM Do YYYY")}</h3>
                 </Carousel.Caption>
                 <Image fluid
                   className="d-block w-60 img"

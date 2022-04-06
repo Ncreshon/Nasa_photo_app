@@ -8,13 +8,11 @@ import "./Home.css";
 function Home() {
   const [todaysImage, setTodaysImage] = useState({});
   const [imageDate, setImageDate] = useState();
-  
-  console.log(process.env)
 
   useEffect(() => {
     const config = {
       method: "get",
-      url: `https://api.nasa.gov/planetary/apod?api_key=${process.env.NASA_KEY}`,
+      url: `https://api.nasa.gov/planetary/apod?api_key=6RGd8QNuiA9pfsN786Q6uzjj6aTHdGsrFiKrl41g`,
       headers: {},
     };
     setImageDate(moment("2022-04-04").format("dddd, MMMM Do YYYY"));
@@ -32,8 +30,9 @@ function Home() {
   return (
     <div className="pod">
       <main>
-        <h1>{imageDate}</h1>
-        <h2>{todaysImage.title}</h2>
+        <h1 className="title">Today's Photo of the Day</h1>
+        <h2>{imageDate}</h2>
+        <h3>{todaysImage.title}</h3>
         <Image fluid src={todaysImage.url} alt={todaysImage.title} />
         <p className="description"> {todaysImage.explanation}</p>
       </main>

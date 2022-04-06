@@ -12,11 +12,19 @@ function PhotoOfDay() {
   const [searchDate, setSearchDate] = useState(moment().format("YYYY-MM-DD"));
 
   const search = ()=> {
-    axios.get(`/nasa/previousPhoto/${searchDate}`)
-    .then((res)=> {
-     setTodaysImage(res.data)
-     setImageDate(moment(res.data.date).format("dddd, MMMM Do YYYY"))
-    }).catch(err=>console.log(err))
+    const config = {
+      method: "get",
+      url: `https://api.nasa.gov/planetary/apod?api_key=6RGd8QNuiA9pfsN786Q6uzjj6aTHdGsrFiKrl41g&date=${searchDate}`,
+      headers: {},
+    };
+    axios(config)
+      .then(function (response) {
+       setTodaysImage(response.data);
+       setImageDate(moment(response.data.date).format("dddd, MMMM Do YYYY"))
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
     
   }
 
@@ -34,7 +42,7 @@ function PhotoOfDay() {
       </header>
 
       <main className="main">
-        <h1>{imageDate}</h1>
+       {imageDate && <h1 className="title">{`Photo of the day for ${imageDate}`}</h1>}
         <h2>{todaysImage.title}</h2>
         <Image fluid src={todaysImage.url} alt={todaysImage.title} />
         <p className="description">{todaysImage.explanation}</p>
