@@ -7,3 +7,9 @@
     width:75%;
     margin: auto;
 }
+
+.title{
+    font-family: 'Permanent Marker', cursive;
+    padding-bottom: 20px;
+    font-size: 50px;
+}

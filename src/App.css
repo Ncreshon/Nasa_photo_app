@@ -5,6 +5,8 @@ body {
   background: linear-gradient(163deg, rgba(0,0,0,1) 23%, rgba(26,23,65,1) 44%, rgba(56,40,92,1) 95%);
   color: whitesmoke;
   width: 100%;
+  font-size: 18px;
+  padding-bottom: 50px;
   
 }
 .App {
